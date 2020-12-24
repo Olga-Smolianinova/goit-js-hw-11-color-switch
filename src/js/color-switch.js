@@ -44,6 +44,10 @@ function onChangeBackground() {
     return;
   }
   isActive = true;
+
+  //присваеваем также атрибут disabled для того чтобы сделать кнопку Start неактивной пока изменение темы запущено. И снимаем его при нажатии на кнопку Stop в onStopChangeBackground
+  refs.startBtn.disabled = true;
+
   intervalId = setInterval(() => {
     //вводим переменную, которая равняется randomIntegerFromInterval с параметрами, где min=0, а max=длина массива length - 1
     let color = randomIntegerFromInterval(0, colors.length - 1);
@@ -56,5 +60,6 @@ function onChangeBackground() {
 
 function onStopChangeBackground() {
   isActive = false;
+  refs.startBtn.disabled = false;
   clearInterval(intervalId);
 }
